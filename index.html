@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Farhan Ariyansyah, S.Kom</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            animation: fadeDown 1.2s ease;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a.active,
+        nav a:hover {
+            color: #111827;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 20px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.8s ease;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #4f46e5;
+        }
+
+        .skills, .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill, .project-card {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s ease;
+        }
+
+        .skill:hover,
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(79,70,229,0.25);
+        }
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: #818cf8;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Farhan Ariyansyah, S.Kom</h1>
+    <p>Web Developer | Productive Teacher TJKT | Freelancer</p>
+</header>
+
+<nav>
+    <a href="#about">Tentang</a>
+    <a href="#skills">Skill</a>
+    <a href="#projects">Proyek</a>
+    <a href="#contact">Kontak</a>
+</nav>
+
+<section id="about">
+    <h2>Tentang Saya</h2>
+    <p>
+        Saya adalah seorang Guru dan Web Developer yang berfokus pada pembuatan website
+        modern, cepat, dan responsif.
+    </p>
+</section>
+
+<section id="skills">
+    <h2>Skill</h2>
+    <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Responsive Design</div>
+        <div class="skill">Git</div>
+        <div class="skill">UI/UX</div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Proyek</h2>
+    <div class="projects">
+        <div class="project-card">
+            <h3>Website Portofolio</h3>
+            <p>Website pribadi untuk menampilkan profil dan karya.</p>
+        </div>
+        <div class="project-card">
+            <h3>Landing Page</h3>
+            <p>Landing page produk dengan desain modern.</p>
+        </div>
+        <div class="project-card">
+            <h3>Website Company</h3>
+            <p>Website company profile berbasis HTML dan CSS.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Kontak</h2>
+    <p>Email: farhanariyansyah02@gmail.com</p>
+    <p>Instagram: <a href="https://www.instagram.com/farhn_syha">@farhn_syha</a></p>
+</section>
+
+<footer>
+    <p>© 2026 Farhan Ariyansyah, S.Kom. Dibuat dengan ❤️</p>
+</footer>
+
+<script>
+    // Scroll Animation
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Active Navbar
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            if (scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
